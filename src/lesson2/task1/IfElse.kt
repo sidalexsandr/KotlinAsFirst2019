@@ -76,7 +76,27 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val Hav:Double   = (t1*v1 + t2*v2 + t3*v3) / 2
+    val rez:Double
+    if(t1*v1 >= Hav)
+    {
+        rez =  (Hav / v1);  1e-2
+        return rez
+    }
+
+    if(t1*v1 + t2*v2 >= Hav)
+    {
+        rez = (t1 + ( (Hav - t1*v1) / v2)); 1e-2
+        return rez
+    }
+    else
+    {
+        rez = ( t1 + t2 + ((Hav - t1*v1 - t2*v2) / v3)); 1e-2
+        return rez
+    }
+
+}
 
 /**
  * Простая
@@ -127,4 +147,77 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+
+    val rezult:Int
+
+    if(a > d)
+    {
+        rezult = -1
+        return rezult
+    }
+
+    if(a == d)
+    {
+        rezult = 0
+        return rezult
+    }
+
+    if((a > c) && (b > d))
+    {
+        rezult = d-a
+        return rezult
+    }
+
+    if((a > c) && (b == d))
+    {
+        rezult = d - a
+        return rezult
+    }
+
+    if((a == c) && (b == d))
+    {
+        rezult = b - a
+        return rezult
+    }
+
+    if((a < c) && (b == d))
+    {
+        rezult = d - c
+        return rezult
+    }
+    if((a > c) && (d > b))
+    {
+        rezult = b - a
+        return rezult
+    }
+
+
+    if((a < c) && (d < b))
+    {
+        rezult = d - c
+        return rezult
+    }
+
+    if((a < c) && (d > b))
+    {
+        rezult = b - c
+        return rezult
+    }
+
+    if(b == c)
+    {
+        rezult = b - c
+        return rezult
+    }
+
+    if(b < c)
+    {
+        rezult = -1
+        return rezult
+    }
+
+
+    return -5
+
+}
