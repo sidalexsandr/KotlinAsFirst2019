@@ -77,22 +77,18 @@ fun timeForHalfWay(
     t2: Double, v2: Double,
     t3: Double, v3: Double
 ): Double {
-    val Hav:Double   = (t1*v1 + t2*v2 + t3*v3) / 2
-    val rez:Double
-    if(t1*v1 >= Hav)
-    {
-        rez =  (Hav / v1);  1e-2
+    val Hav: Double = (t1 * v1 + t2 * v2 + t3 * v3) / 2
+    val rez: Double
+    if (t1 * v1 >= Hav) {
+        rez = (Hav / v1)
         return rez
     }
 
-    if(t1*v1 + t2*v2 >= Hav)
-    {
-        rez = (t1 + ( (Hav - t1*v1) / v2)); 1e-2
+    if (t1 * v1 + t2 * v2 >= Hav) {
+        rez = (t1 + ((Hav - t1 * v1) / v2))
         return rez
-    }
-    else
-    {
-        rez = ( t1 + t2 + ((Hav - t1*v1 - t2*v2) / v3)); 1e-2
+    } else {
+        rez = (t1 + t2 + ((Hav - t1 * v1 - t2 * v2) / v3))
         return rez
     }
 
@@ -149,70 +145,59 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
 
-    val rezult:Int
+    val rezult: Int
 
-    if(a > d)
-    {
+    if (a > d) {
         rezult = -1
         return rezult
     }
 
-    if(a == d)
-    {
+    if (a == d) {
         rezult = 0
         return rezult
     }
 
-    if((a > c) && (b > d))
-    {
-        rezult = d-a
-        return rezult
-    }
-
-    if((a > c) && (b == d))
-    {
+    if ((a > c) && (b > d)) {
         rezult = d - a
         return rezult
     }
 
-    if((a == c) && (b == d))
-    {
+    if ((a > c) && (b == d)) {
+        rezult = d - a
+        return rezult
+    }
+
+    if ((a == c) && (b == d)) {
         rezult = b - a
         return rezult
     }
 
-    if((a < c) && (b == d))
-    {
+    if ((a < c) && (b == d)) {
         rezult = d - c
         return rezult
     }
-    if((a > c) && (d > b))
-    {
+    if ((a > c) && (d > b)) {
         rezult = b - a
         return rezult
     }
 
 
-    if((a < c) && (d < b))
-    {
+    if ((a < c) && (d < b)) {
         rezult = d - c
         return rezult
     }
 
-    if((a < c) && (d > b))
-    {
+    if ((a < c) && (d > b)) {
         rezult = b - c
         return rezult
     }
 
-    if(b == c)
-    {
+    if (b == c) {
         rezult = b - c
         return rezult
     }
 
-    if(b < c)
-    {
+    if (b < c) {
         rezult = -1
         return rezult
     }
