@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
 import kotlin.math.sqrt
 
 /**
@@ -67,7 +68,38 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+
+     var nn = 1;
+    var z = n
+    while ((z / 10) != 0) {
+
+        z = z / 10;
+        nn = nn + 1;
+
+    }
+
+
+    return nn
+
+}
+fun nDigit (n: Int, k: Int): Int {
+
+    var nn = 1;
+    var z = n
+
+    while (nn < k) {
+
+        z = (z / 10);
+        nn = nn + 1;
+
+    }
+
+    z = z % 10;
+
+    return z
+
+}
 
 /**
  * Простая
@@ -196,7 +228,22 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+
+    var nn = 1
+    var q:Int = 0
+    var kol:Int = 0
+    while(kol < n){
+
+        q = sqr (nn)
+        kol = kol + digitNumber(q)
+
+        nn = nn + 1
+
+    }
+    return nDigit(q, (kol-n+1))
+
+}
 
 /**
  * Сложная
