@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import java.lang.StringBuilder
 import kotlin.math.sqrt
 
 /**
@@ -236,7 +237,100 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String {
+    val rim = listOf(1000 to "M", 900 to "CM", 500 to "D", 400 to "CD", 100 to "C", 90 to "XC",
+        50 to "L", 40 to "XL", 10 to "X", 9 to "IX", 5 to "V", 4 to "IV", 1 to "I")
+    val rezult = StringBuilder()
+    var z = n
+    for((num, digit) in rim)
+    {
+        while(z >= num) {
+            rezult.append(digit)
+            z = z -num
+        }
+
+    }
+
+    return rezult.toString()
+
+}
+
+fun triChislo(n: Int, thousands: Boolean): String {
+
+    var z = n
+    var sotni: Int
+    // Сотни
+    sotni = z / 100
+    val rezult = StringBuilder()
+    rezult.append(when(sotni) {
+
+        1 -> "сто"
+        2 -> "двести"
+        3 -> "тристо"
+        4 -> "четыресто"
+        5 -> "пятьсот"
+        6 -> "шестьсот"
+        7 -> "семьсот"
+        8 -> "восемьсот"
+        9 -> "девтьсот"
+        else -> ""
+    })
+
+    var desatci: Int
+    desatci = z / 10
+    desatci = desatci % 10
+    var ed: Int = z % 10
+    if(desatci == 1){
+        rezult.append(    when(ed){
+            1 -> "одинадцать"
+            2 -> "двенадцать"
+            3 -> "тринадцать"
+            4 -> "четынадцать"
+            5 -> "пятьнадцать"
+            6 -> "шестьнадцать"
+            7 -> "семьнадцать"
+            8 -> "восемьнадцать"
+            9 -> "девтьнадцать"
+            else -> "десять"
+
+        }
+        )
+    }
+    else {
+
+        rezult.append(
+            when (desatci) {
+                2 -> "двадцать"
+                3 -> "тридцать"
+                4 -> "сорок"
+                5 -> "пятьдесят"
+                6 -> "шестьдесят"
+                7 -> "семьдесят"
+                8 -> "восемьдесят"
+                9 -> "девяносто"
+                else -> ""
+            }
+        )
+
+        rezult.append(
+            when (ed) {
+                1 -> if (thousands) "одна" else "один"
+                2 -> if (thousands) "две" else "два"
+                3 -> "три"
+                4 -> "четыре"
+                5 -> "пять"
+                6 -> "шесть"
+                7 -> "семь"
+                8 -> "восемь"
+                9 -> "девять"
+                else -> ""
+            }
+        )
+
+
+    }
+    return rezult.toString()
+}
 
 /**
  * Очень сложная
