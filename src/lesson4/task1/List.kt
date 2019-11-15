@@ -332,6 +332,13 @@ fun triChislo(n: Int, thousands: Boolean): String {
     return rezult.toString()
 }
 
+fun razdelNaDva(n: Int): Pair<Int, Int> {
+
+    val m = n / 1000
+    val v = n % 1000
+    return Pair(m, v)
+}
+
 /**
  * Очень сложная
  *
@@ -339,4 +346,16 @@ fun triChislo(n: Int, thousands: Boolean): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String {
+
+    val b = razdelNaDva(n)
+    val tisicha: String = triChislo(b.first, true)
+    val ed: String = triChislo(b.second, false)
+    val itog: String
+    when()
+    {
+
+
+    }
+
+}
