@@ -261,18 +261,18 @@ fun triChislo(n: Int, thousands: Boolean): String {
     var sotni: Int
     // Сотни
     sotni = z / 100
-    val rezult = StringBuilder()
-    rezult.append(when(sotni) {
+    val rezult = mutableListOf<String>()
+    rezult.add(when(sotni) {
 
         1 -> "сто"
         2 -> "двести"
-        3 -> "тристо"
-        4 -> "четыресто"
+        3 -> "триста"
+        4 -> "четыреста"
         5 -> "пятьсот"
         6 -> "шестьсот"
         7 -> "семьсот"
         8 -> "восемьсот"
-        9 -> "девтьсот"
+        9 -> "девятьсот"
         else -> ""
     })
 
@@ -281,16 +281,16 @@ fun triChislo(n: Int, thousands: Boolean): String {
     desatci = desatci % 10
     var ed: Int = z % 10
     if(desatci == 1){
-        rezult.append(    when(ed){
-            1 -> "одинадцать"
+        rezult.add(    when(ed){
+            1 -> "одиннадцать"
             2 -> "двенадцать"
             3 -> "тринадцать"
-            4 -> "четынадцать"
-            5 -> "пятьнадцать"
-            6 -> "шестьнадцать"
-            7 -> "семьнадцать"
-            8 -> "восемьнадцать"
-            9 -> "девтьнадцать"
+            4 -> "четырнадцать"
+            5 -> "пятнадцать"
+            6 -> "шестнадцать"
+            7 -> "семнадцать"
+            8 -> "восемнадцать"
+            9 -> "девятнадцать"
             else -> "десять"
 
         }
@@ -298,7 +298,7 @@ fun triChislo(n: Int, thousands: Boolean): String {
     }
     else {
 
-        rezult.append(
+        rezult.add(
             when (desatci) {
                 2 -> "двадцать"
                 3 -> "тридцать"
@@ -312,7 +312,7 @@ fun triChislo(n: Int, thousands: Boolean): String {
             }
         )
 
-        rezult.append(
+        rezult.add(
             when (ed) {
                 1 -> if (thousands) "одна" else "один"
                 2 -> if (thousands) "две" else "два"
@@ -329,7 +329,7 @@ fun triChislo(n: Int, thousands: Boolean): String {
 
 
     }
-    return rezult.toString()
+    return rezult.filter { it.isNotEmpty() }.joinToString(separator = " ")
 }
 
 fun razdelNaDva(n: Int): Pair<Int, Int> {
@@ -351,11 +351,20 @@ fun russian(n: Int): String {
     val b = razdelNaDva(n)
     val tisicha: String = triChislo(b.first, true)
     val ed: String = triChislo(b.second, false)
-    val itog: String
-    when()
-    {
+    val itog = StringBuilder(tisicha)
+    if(n >= 1000) {
+        when {
+            b.first % 100 in 10..20 -> itog.append(" тысяч")
+            b.first % 10 == 1 -> itog.append(" тысяча")
+            b.first % 10 in 2..4 -> itog.append(" тысячи")
+            else -> itog.append(" тысяч")
+        }
 
 
+        if (ed.isNotEmpty()) {
+            itog.append(" ")
+        }
     }
-
+    itog.append(ed)
+    return itog.toString()
 }
