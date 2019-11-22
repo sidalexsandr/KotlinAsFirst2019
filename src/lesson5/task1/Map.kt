@@ -91,7 +91,26 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *   buildGrades(mapOf("Марат" to 3, "Семён" to 5, "Михаил" to 5))
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
-fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
+fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
+
+    val rezult = mutableMapOf<Int, MutableList<String>>()
+
+    for ((stud,ocenka) in grades)
+    {
+        val studSpis = rezult[ocenka]
+        if(studSpis != null)
+        {
+            studSpis.add(stud)
+        }
+        else
+        {
+            rezult[ocenka] = mutableListOf(stud)
+        }
+    }
+
+    return rezult
+
+}
 
 /**
  * Простая
@@ -257,7 +276,11 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+
+
+
+}
 
 /**
  * Очень сложная
