@@ -257,7 +257,31 @@ fun hasAnagrams(words: List<String>): Boolean = TODO()
  *          "Mikhail" to setOf("Sveta", "Marat")
  *        )
  */
-fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<String>> = TODO()
+fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<String>> {
+
+    val rezult: MutableMap<String, MutableSet<String>> = mutableMapOf()
+    for((tek, tekfriends )in friends)
+    {
+        rezult[tek] = tekfriends.toMutableSet()
+        for(drdr in tekfriends)
+        {
+            if(drdr !in friends && drdr !in rezult){
+                rezult[drdr] = mutableSetOf()
+            }
+        }
+    }
+
+    var ostanovka: Boolean = true
+    while(ostanovka)
+    {
+
+
+    }
+
+
+
+    return rezult
+}
 
 /**
  * Сложная
@@ -278,7 +302,23 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
 
+    val tekmap = mutableMapOf<Int, Int>();
+    for((index, tek) in list.withIndex())
+    {
+        val tcho: Int
+        tcho = number - tek
+        val index2 = tekmap[tcho]
+        if(index2 != null)
+        {
+            return index2 to index
+        }
+        else
+        {
+            tekmap[tek] = index
+        }
+    }
 
+    return Pair(-1, -1)
 
 }
 
