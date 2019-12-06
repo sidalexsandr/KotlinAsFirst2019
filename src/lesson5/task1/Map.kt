@@ -271,11 +271,22 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
         }
     }
 
-    var ostanovka: Boolean = true
-    while(ostanovka)
+    var ostanovka: Boolean = false
+    while(!ostanovka)
     {
-
-
+        ostanovka = true
+            for((tek, tekfriends)in rezult){
+               val drfriends = mutableSetOf<String>()
+                for(drdr in tekfriends) {
+                    drfriends.addAll(rezult[drdr]!!)
+                }
+                drfriends.remove(tek)
+             val t = tekfriends.addAll(drfriends)
+             if(t)
+             {
+                 ostanovka = false
+             }
+            }
     }
 
 
