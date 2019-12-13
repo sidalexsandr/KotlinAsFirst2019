@@ -127,8 +127,33 @@ fun alignFileByWidth(inputName: String, outputName: String) {
     val lines = mutableListOf<String>()
     for (line in File(inputName).readLines()){
         val tekstr = line.trim().replace(Regex(""" +"""), " ")
-
+        lines.add(tekstr)
+        if(tekstr.length > maxLineLength){
+            maxLineLength = tekstr.length
+        }
     }
+
+    File(outputName).bufferedWriter().use {
+        for(line in lines){
+            val words = line.split(" ")
+            if(words.size > 1) {
+                val dlina = maxLineLength - line.length
+                val dl = dlina / (words.size - 1)
+                val dlost = dlina % (words.size - 1)
+                for (i in 0 until words.size - 1) {
+                    it.write(words[i])
+                    if (i < dlost) {
+                        it.write(" ".repeat(dl + 2))
+                    } else {
+                        it.write(" ".repeat(dl + 1))
+                    }
+                }
+            }
+            it.write(words.last())
+            it.newLine()
+        }
+    }
+
 
 }
 
